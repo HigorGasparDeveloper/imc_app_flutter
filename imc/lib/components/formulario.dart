@@ -40,17 +40,17 @@ class _FormularioState extends State<Formulario> {
     String diagnostico = "Obesidade III";
     double imc = getImc();
     Map<double, String> diagnosticos = {
-      18.5:"Abaixo do peso",
-      24.9:"Peso normal",
-      29.9:"Sobrepeso",
-      34.9:"Obesidade I",
-      39.9:"Obesidade II"
+      18.5: "Abaixo do peso",
+      24.9: "Peso normal",
+      29.9: "Sobrepeso",
+      34.9: "Obesidade I",
+      39.9: "Obesidade II"
     };
 
-    for(var rec in diagnosticos.entries){
+    for (var rec in diagnosticos.entries) {
       var recImc = rec.key;
       var recRec = rec.value;
-      if(imc < recImc){
+      if (imc < recImc) {
         diagnostico = recRec;
         break;
       }
@@ -101,10 +101,8 @@ class _FormularioState extends State<Formulario> {
 
   Map<String, double> calcular() {
     if (_peso_controller.text != "" && _altura_controller.text != "") {
-      peso =
-          double.tryParse((_peso_controller.text).replaceAll(',', '.'))!;
-      altura =
-          double.tryParse((_altura_controller.text).replaceAll(',', '.'))!;
+      peso = double.tryParse((_peso_controller.text).replaceAll(',', '.'))!;
+      altura = double.tryParse((_altura_controller.text).replaceAll(',', '.'))!;
       double imc = getImc();
       return {"Status": 200, "imc": imc};
     } else {
@@ -125,26 +123,7 @@ class _FormularioState extends State<Formulario> {
             focusNode: _focusNodeAltura,
             // onChanged: (value) => altura = value as double,
             controller: _altura_controller,
-            onSubmitted: (String value) async {
-              await showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Thanks!'),
-                    content: Text(
-                        'You typed "$value", which has length ${value.characters.length}.'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
+            onSubmitted: (String value) async {},
             keyboardType: TextInputType.number,
             decoration: InputDecoration(labelText: "Altura"),
           ),
@@ -152,26 +131,7 @@ class _FormularioState extends State<Formulario> {
             obscureText: false,
             // onChanged: (value) => peso = value as double,
             controller: _peso_controller,
-            onSubmitted: (String value) async {
-              await showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Thanks!'),
-                    content: Text(
-                        'You typed "$value", which has length ${value.characters.length}.'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
+            onSubmitted: (String value) async {},
             keyboardType: TextInputType.number,
             decoration: InputDecoration(labelText: "Peso"),
           ),
